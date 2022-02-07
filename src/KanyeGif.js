@@ -16,9 +16,16 @@ const kanyeGifs = [
 const KanyeGif = () => {
   const [kanyeGif, setKanyeGif] = useState("");
 
+//   useEffect(() => {
+//     setKanyeGif(kanyeGifs[Math.floor(Math.random() * kanyeGifs.length)]);
+//   }, []);
+
   useEffect(() => {
-    setKanyeGif(kanyeGifs[Math.floor(Math.random() * kanyeGifs.length)]);
-  }, []);
+    const interval = setInterval(() => {
+        setKanyeGif(kanyeGifs[Math.floor(Math.random() * kanyeGifs.length)]);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [kanyeGif]);
   
 
 
