@@ -16,11 +16,13 @@ const App = () => {
         .then((res) => {
           let newQoute = res.data.quote;
           setQuote(newQoute);
+          setPrevQoutes(previous => [newQoute, ...previous]);
+          console.log(prevQoutes);
       })
             setUrl(urlFinal);
         }, 5000);
         return () => clearInterval(interval);
-  }, [url]);
+  }, [prevQoutes, url]);
 
   //Fetch API
     // useEffect(() => {
@@ -32,7 +34,7 @@ const App = () => {
     //    let newQoute = json.quote;
     //    setQuote(newQoute);
     //   })
-    //   .catch(error => console.log("Error"))
+    //   .catch(error => console.log("There was a problem loading a Kanye quote, please try again later"))
       
     //            setUrl(urlFinal);
     //        }, 1000);
@@ -46,9 +48,25 @@ const App = () => {
         <a href="/instructions.html"> instructions </a>
       </h1>
       <KanyeGif />
-      <h2>QUOTE</h2>
-         <p>{quote}</p>
+      <div>
+        <h2>QUOTE</h2>
+          <p>{quote}</p>
+      </div>
+      <div>
+        <h2>Previous Qoutes</h2>
+         {prevQoutes.map((quote) => {
+           if(quote === "")
+           {
+             return <p>Loading..</p>
+           }
+           else
+           {
+            return <p>{quote}</p>
+           }
+         })}
+      </div>
     </div>
+    
   );
 };
 
