@@ -8,35 +8,34 @@ const App = () => {
   const [quote, setQuote] = useState("");
   const [prevQoutes, setPrevQoutes] = useState([]);
 
-   useEffect(() => {
+  useEffect(() => {
+     const interval = setInterval(() => {
      let urlFinal = "https://api.kanye.rest";
      axios.get(urlFinal)
      .then((res) => {
-       let input = res.data.quote;
-       setQuote(input);
-       console.log(input);
+       let newQoute = res.data.quote;
+       setQuote(newQoute);
    })
-       const interval = setInterval(() => {
          setUrl(urlFinal);
      }, 1000);
      return () => clearInterval(interval);
-   }, [url]);
+  }, [url]);
 
-  // useEffect(() => {
-  //   // eslint-disable-next-line no-useless-concat
-  //   let urlFinal = "https://api.kanye.rest";
-  //   fetch(urlFinal)
-  //   .then((response)  => { 
-  //     let input = response.json();
-  //     setPosts(input);
-  //     console.log(input.data.quote);
-  //   })
-  //   .catch(error => console.log("Error"))
-  //   const interval = setInterval(() => {
-  //            setUrl(urlFinal);
-  //        }, 1000);
-  //        return () => clearInterval(interval);
-  // }, [url]);
+    // useEffect(() => {
+    //   const interval = setInterval(() => {
+    //   let urlFinal = "https://api.kanye.rest";
+    //   fetch(urlFinal)
+    //   .then(response => response.json())
+    //   .then (json => {
+    //    let newQoute = json.quote;
+    //    setQuote(newQoute);
+    //   })
+    //   .catch(error => console.log("Error"))
+      
+    //            setUrl(urlFinal);
+    //        }, 1000);
+    //        return () => clearInterval(interval);
+    // }, [url]);
 
 
   return (
