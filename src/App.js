@@ -5,9 +5,8 @@ import "./styles.css";
 
 const App = () => {
   const [url, setUrl] = useState('');
-  const [quote, setQuote] = useState("");
+  const [quote, setQuote] = useState('Loading...');
   const [prevQoutes, setPrevQoutes] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   //Axios
    useEffect(() => {
@@ -19,9 +18,7 @@ const App = () => {
            let newQoute = res.data.quote;
            setQuote(newQoute);
            //Add NewQuotes in Previous Array. Like Push
-           setPrevQoutes(previous => [newQoute, ...previous]);
-           //Loading
-           setLoading(false);
+           setPrevQoutes(previous => [newQoute, ...previous].slice(0, 10));
        })
              setUrl(urlFinal);
          }, 5000);
