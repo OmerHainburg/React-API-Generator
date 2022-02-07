@@ -9,37 +9,41 @@ const App = () => {
   const [prevQoutes, setPrevQoutes] = useState([]);
 
   //Axios
-  useEffect(() => {
-     const interval = setInterval(() => {
-        let urlFinal = "https://api.kanye.rest";
-        axios.get(urlFinal)
-        .then((res) => {
-          let newQoute = res.data.quote;
-          setQuote(newQoute);
-          setPrevQoutes(previous => [newQoute, ...previous]);
-          console.log(prevQoutes);
-      })
-            setUrl(urlFinal);
-        }, 5000);
-        return () => clearInterval(interval);
+   useEffect(() => {
+      const interval = setInterval(() => {
+         let urlFinal = "https://api.kanye.rest";
+         axios.get(urlFinal)
+         .then((res) => {
+           //Get Quote From URL
+           let newQoute = res.data.quote;
+           setQuote(newQoute);
+           //Add NewQuotes in Previous Array. Like Push
+           setPrevQoutes(previous => [newQoute, ...previous]);
+       })
+             setUrl(urlFinal);
+         }, 5000);
+         return () => clearInterval(interval);
   }, [prevQoutes, url]);
 
   //Fetch API
-    // useEffect(() => {
-    //   const interval = setInterval(() => {
-    //   let urlFinal = "https://api.kanye.rest";
-    //   fetch(urlFinal)
-    //   .then(response => response.json())
-    //   .then (json => {
-    //    let newQoute = json.quote;
-    //    setQuote(newQoute);
-    //   })
-    //   .catch(error => console.log("There was a problem loading a Kanye quote, please try again later"))
+    //  useEffect(() => {
+    //    const interval = setInterval(() => {
+    //    let urlFinal = "https://api.kanye.rest";
+    //    fetch(urlFinal)
+    //    .then(response => response.json())
+    //    .then (json => {
+    //       let newQoute = json.quote;
+    //       setQuote(newQoute);
+    //        //Add NewQuotes in Previous Array. Like Push
+    //       setPrevQoutes(previous => [newQoute, ...previous]);
+    //       setQuote(newQoute);
+    //    })
+    //    .catch(error => console.log("There was a problem loading a Kanye quote, please try again later"))
       
-    //            setUrl(urlFinal);
-    //        }, 1000);
-    //        return () => clearInterval(interval);
-    // }, [url]);
+    //             setUrl(urlFinal);
+    //         }, 1000);
+    //         return () => clearInterval(interval);
+    //  }, [prevQoutes, url]);
 
 
   return (
