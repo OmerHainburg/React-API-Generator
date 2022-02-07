@@ -8,6 +8,7 @@ const App = () => {
   const [quote, setQuote] = useState("");
   const [prevQoutes, setPrevQoutes] = useState([]);
 
+  //Axios
   useEffect(() => {
      const interval = setInterval(() => {
         let urlFinal = "https://api.kanye.rest";
@@ -21,6 +22,7 @@ const App = () => {
         return () => clearInterval(interval);
   }, [url]);
 
+  //Fetch API
     // useEffect(() => {
     //   const interval = setInterval(() => {
     //   let urlFinal = "https://api.kanye.rest";
