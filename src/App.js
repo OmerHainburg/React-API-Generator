@@ -10,15 +10,15 @@ const App = () => {
 
   useEffect(() => {
      const interval = setInterval(() => {
-     let urlFinal = "https://api.kanye.rest";
-     axios.get(urlFinal)
-     .then((res) => {
-       let newQoute = res.data.quote;
-       setQuote(newQoute);
-   })
-         setUrl(urlFinal);
-     }, 1000);
-     return () => clearInterval(interval);
+        let urlFinal = "https://api.kanye.rest";
+        axios.get(urlFinal)
+        .then((res) => {
+          let newQoute = res.data.quote;
+          setQuote(newQoute);
+      })
+            setUrl(urlFinal);
+        }, 5000);
+        return () => clearInterval(interval);
   }, [url]);
 
     // useEffect(() => {
